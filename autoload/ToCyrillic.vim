@@ -1,12 +1,12 @@
 scriptencoding utf-8
-if !exists('g:loaded_cyrillic')
+if !exists("g:loaded_to_cyrillic")
     finish
 endif
 
 let s:save_cpo=&cpo
 set cpo&vim
 "define_map{{{
-function Map_cyrillic()
+function! Map_cyrillic()
     " upper
     inoremap A А
     inoremap B Б
@@ -93,9 +93,8 @@ function Map_cyrillic()
 endfunction
 "}}}
 
-
 "undef{{{
-function Unmap_cyrillic()
+function! Unmap_cyrillic()
     " upper
     iunmap A
     iunmap B
@@ -179,14 +178,14 @@ function Unmap_cyrillic()
 endfunction
 "}}}
 "
-function Finish_cyrillic()
+function! ToCyrillic#Finish_cyrillic()
     if g:insert_cyrillic == 1
         call Unmap_cyrillic()
         let g:insert_cyrillic=0
     endif
 endfunction
 
-function Toggle_insert_cyrillic()
+function! ToCyrillic#Toggle_insert_cyrillic()
     if g:insert_cyrillic==0
         let g:insert_cyrillic=1
         call Map_cyrillic()
